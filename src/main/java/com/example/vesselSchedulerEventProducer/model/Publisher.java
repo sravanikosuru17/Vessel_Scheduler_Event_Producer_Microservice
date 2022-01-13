@@ -1,5 +1,6 @@
 package com.example.vesselSchedulerEventProducer.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Publisher {
     private Address address;
     private List<Object> identifyingCodes;
