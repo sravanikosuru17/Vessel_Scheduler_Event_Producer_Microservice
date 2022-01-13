@@ -17,17 +17,10 @@ public class vesselSchedulerEventProducerController {
 
     @Autowired
     Producer producer;
-    
-	
-	@Autowired KafkaTemplate<String, String> kafkaTemplate;
-	 
-    
-    public static final String TOPIC="POC.vesselschedule.topic.internal.any.v1";
+
 
     @PostMapping(path="/publishData", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> publishDetails(@RequestBody Data data){
-    	
-    	kafkaTemplate.send(TOPIC, data.toString());
     	
         String eventId = producer.publishToTopic(data);
         return ResponseEntity.status(HttpStatus.CREATED).body(eventId);
