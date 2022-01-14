@@ -1,5 +1,7 @@
 package com.example.vesselSchedulerEventProducer.service;
 
+import com.example.vesselSchedulerEventProducer.exception.BadRequestException;
+import com.example.vesselSchedulerEventProducer.exception.ServiceException;
 import com.example.vesselSchedulerEventProducer.model.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,18 @@ public class Producer {
 
     public static final String KAFKA_TOPIC= "POC.vesselschedule.topic.internal.any.v1";
 
-    //TODO: Kafka integration
-    public String publishToTopic(Data data){
-    	
-    	kafkaTemplate.send(KAFKA_TOPIC, data.toString());
+    public String publishToTopic(Data data) throws ServiceException, BadRequestException {
+    	try {
+            String eventId = "";
+                    //String.valueOf(kafkaTemplate.send(KAFKA_TOPIC, data.toString()));
+            if(eventId.isBlank()){
+                throw new ServiceException("Event Id is null");
+            }
+            return eventId;
 
-        return null;
+        }catch (RuntimeException ex){
+            throw new BadRequestException("Error Occurred while calling Service");
+        }
     }
 
 }
