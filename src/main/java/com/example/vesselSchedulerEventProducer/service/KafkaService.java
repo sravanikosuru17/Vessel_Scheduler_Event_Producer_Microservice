@@ -19,6 +19,7 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class KafkaService {
+	
 
     @Autowired
     KafkaTemplate<String, String> kafkaTemplate;
@@ -29,7 +30,9 @@ public class KafkaService {
     @Value("${kafka.producer.message.key}")
     private String kafkaProducerMessageKey;
 
+
     public String publishToTopic(Data data) {
+
 
         try {
             UUID uuid = UUID.randomUUID();
