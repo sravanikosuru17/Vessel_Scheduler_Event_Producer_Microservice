@@ -2,6 +2,7 @@ package com.example.vesselSchedulerEventProducer.service;
 
 import com.example.vesselSchedulerEventProducer.exception.ServiceException;
 import com.example.vesselSchedulerEventProducer.model.Data;
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.config.ConfigException;
@@ -36,9 +37,13 @@ public class KafkaService {
 
         try {
             UUID uuid = UUID.randomUUID();
+            
+            String strData = new Gson().toJson(data);
+            
+            log.info("JSON representation of data: " + strData);
             String uuidAsString = uuid.toString();
             Message<String> message = MessageBuilder
-                    .withPayload(data.toString())
+                    .withPayload(strData)
                     .setHeader(KafkaHeaders.TOPIC, kafkaProducerTopic)
                     .setHeader(KafkaHeaders.MESSAGE_KEY, kafkaProducerMessageKey)
                     .setHeader("Event_ID", uuidAsString)
