@@ -11,7 +11,7 @@ public class ExceptionHandlerController {
     @ExceptionHandler(ServiceException.class)
     public @ResponseBody ErrorResponse handleServiceExceptions(ServiceException ex) {
         ErrorResponse error = new ErrorResponse();
-        error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+        error.setStatus(HttpStatus.NOT_FOUND);
         error.setMessage(ex.getMessage());
         return error;
     }
