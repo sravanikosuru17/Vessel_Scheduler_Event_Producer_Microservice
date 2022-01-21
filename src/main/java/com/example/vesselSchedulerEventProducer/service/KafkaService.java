@@ -43,7 +43,7 @@ public class KafkaService {
             return String.valueOf(kafkaTemplate.send(message));
 
         } catch (Exception ex) {
-            log.error("Exception :" + ex.getMessage());
+            log.error("Exception :" + ex);
             throw new ServiceException(ex.getMessage());
         }
 
