@@ -1,6 +1,5 @@
 package com.example.vesselSchedulerEventProducer.service;
 
-import com.example.vesselSchedulerEventProducer.exception.BadRequestException;
 import com.example.vesselSchedulerEventProducer.exception.ServiceException;
 import com.example.vesselSchedulerEventProducer.model.Data;
 
@@ -28,7 +27,7 @@ public class KafkaService {
     @Value("${kafka.producer.message.key}")
     private String kafkaProducerMessageKey;
 
-    public String publishToTopic(Data data) throws BadRequestException, ServiceException {
+    public String publishToTopic(Data data) throws ServiceException {
 
         try {
             UUID uuid = UUID.randomUUID();
@@ -40,16 +39,13 @@ public class KafkaService {
                     .setHeader("Event_ID", uuidAsString)
                     .build();
 
-            log.info("sending message='{}' to topic='{}'", data, kafkaProducerTopic);
-            String eventId = String.valueOf(kafkaTemplate.send(message));
-            log.info("Event id after sending message ='{}'", eventId);
-            if (eventId.isBlank()) {
-                throw new ServiceException("Event Id is null");
-            }
-            return eventId;
+            log.info("sending message='{}' to topic='{}'", message, kafkaProducerTopic);
+            return String.valueOf(kafkaTemplate.send(message));
 
-        } catch (RuntimeException ex) {
-            throw new BadRequestException("Error Occurred while calling Service");
+        } catch (Exception ex) {
+            log.error("Exception :" + ex.getMessage());
+            throw new ServiceException(ex.getMessage());
         }
+
     }
 }

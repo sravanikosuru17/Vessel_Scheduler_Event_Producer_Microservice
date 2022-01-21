@@ -18,7 +18,7 @@ public class vesselSchedulerEventProducerController {
     @PostMapping(path="/publishData", consumes = "application/json", produces = "application/json")
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public String publishDetails(@RequestBody Data data) throws ServiceException, BadRequestException {
+    public String publishDetails(@RequestBody Data data) throws ServiceException {
         return kafkaService.publishToTopic(data);
     }
 }
