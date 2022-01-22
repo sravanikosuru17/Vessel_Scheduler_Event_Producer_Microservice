@@ -1,9 +1,11 @@
 package com.example.vesselSchedulerEventProducer.service;
 
-import com.example.vesselSchedulerEventProducer.exception.ServiceException;
+
 import com.example.vesselSchedulerEventProducer.model.Data;
 import com.google.gson.Gson;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.config.ConfigException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import java.util.UUID;
 
 @Service
 @Slf4j
+@AllArgsConstructor
+@NoArgsConstructor
 public class KafkaService {
 	
 
