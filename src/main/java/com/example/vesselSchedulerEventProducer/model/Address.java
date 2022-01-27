@@ -32,7 +32,7 @@ public class Address {
     private String postCode;
 
     @NotBlank
-    @Size(min = 3, max = 50)
+    @Size(min = 1, max = 50)
     private String stateRegion;
 
     @NotBlank
@@ -40,7 +40,7 @@ public class Address {
     private String street;
 
     @NotBlank
-    @Size(min = 3, max = 50)
+    @Size(min = 1, max = 50)
     private String streetNumber;
 
 

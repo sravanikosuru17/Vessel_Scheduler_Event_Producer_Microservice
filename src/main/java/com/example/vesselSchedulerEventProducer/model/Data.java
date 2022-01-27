@@ -12,12 +12,12 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class Data {
 
-    @NotBlank
-    @Size(min = 3, max = 50)
+    @NotBlank(message = "UNLocationCode is mandatory")
+    @Size(min = 3, max = 50, message = "UNLocationCode should be between 3 & 50 characters")
     private String UNLocationCode;
 
-    @NotBlank
-    @Size(min = 3, max = 50)
+    @NotBlank(message = "carrierServiceCode is mandatory")
+    @Size(min = 3, max = 50, message = "carrierServiceCode should be between 3 & 50 characters")
     private String carrierServiceCode;
 
     @NotBlank
@@ -58,7 +58,7 @@ public class Data {
     private Publisher publisher;
 
     @NotBlank
-    @Size(min = 3, max = 50)
+    @Size(min = 1, max = 50)
     private String publisherRole;
 
     @NotBlank
@@ -67,7 +67,7 @@ public class Data {
     private TimestampId timestampId;
 
     @NotBlank
-    @Size(min = 3, max = 50)
+    @Size(min = 1, max = 50)
     private String transportCallSequenceNumber;
 
     @NotBlank
