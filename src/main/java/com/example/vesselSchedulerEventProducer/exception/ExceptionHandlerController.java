@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class ExceptionHandlerController {
@@ -17,6 +18,7 @@ public class ExceptionHandlerController {
     }
 
     @ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(code=HttpStatus.BAD_REQUEST)
     public @ResponseBody ErrorResponse handleBadRequestException(BadRequestException ex) {
         ErrorResponse error = new ErrorResponse();
         error.setStatus(HttpStatus.BAD_REQUEST);
