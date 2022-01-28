@@ -2,6 +2,9 @@ package com.example.vesselSchedulerEventProducer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
+
 
 @SpringBootApplication
 public class VesselSchedulerEventProducerServiceApplication {
@@ -10,4 +13,8 @@ public class VesselSchedulerEventProducerServiceApplication {
 		SpringApplication.run(VesselSchedulerEventProducerServiceApplication.class, args);
 	}
 
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
 }

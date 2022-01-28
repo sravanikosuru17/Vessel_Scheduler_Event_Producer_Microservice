@@ -30,7 +30,7 @@ class KafkaServiceTest {
 
     @BeforeEach
     void setUp(){
-        this.kafkaService = new KafkaService(kafkaTemplate,"POC.vesselschedule.topic.internal.any.v1","VesselSchedulEvent");
+        this.kafkaService = new KafkaService(kafkaTemplate,"VesselSchedulEvent","POC.vesselschedule.topic.internal.any.v1");
     }
 
     @Test
